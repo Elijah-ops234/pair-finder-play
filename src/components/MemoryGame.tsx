@@ -135,52 +135,59 @@ const MemoryGame = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-100 via-blue-50 to-pink-100 p-4">
-      <div className="max-w-4xl mx-auto">
+    <div className="min-h-screen game-container p-6">
+      <div className="max-w-6xl mx-auto relative z-10">
         {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent mb-2">
-            Memory Card Game
+        <div className="text-center mb-12">
+          <h1 className="text-6xl md:text-7xl font-bold game-title mb-4">
+            MEMORY GAME
           </h1>
-          <p className="text-muted-foreground text-lg">
-            Find all the matching pairs!
+          <p className="text-foreground/80 text-xl font-medium">
+            ✨ Find all the matching pairs and test your memory! ✨
           </p>
         </div>
 
         {/* Stats */}
-        <div className="flex flex-wrap gap-4 justify-center mb-8">
-          <Card className="stats-card">
-            <div className="flex items-center gap-2">
-              <Target className="w-5 h-5 text-primary" />
+        <div className="flex flex-wrap gap-6 justify-center mb-12">
+          <Card className="stats-card min-w-[140px]">
+            <div className="flex items-center gap-3">
+              <div className="p-2 rounded-full bg-primary/20">
+                <Target className="w-6 h-6 text-primary" />
+              </div>
               <div>
-                <p className="text-sm text-muted-foreground">Moves</p>
-                <p className="text-2xl font-bold text-primary">{moves}</p>
+                <p className="text-sm text-muted-foreground font-medium">Moves</p>
+                <p className="text-3xl font-bold bg-gradient-to-r from-primary to-primary-variant bg-clip-text text-transparent">
+                  {moves}
+                </p>
               </div>
             </div>
           </Card>
           
-          <Card className="stats-card">
-            <div className="flex items-center gap-2">
-              <Timer className="w-5 h-5 text-primary" />
+          <Card className="stats-card min-w-[140px]">
+            <div className="flex items-center gap-3">
+              <div className="p-2 rounded-full bg-secondary/20">
+                <Timer className="w-6 h-6 text-secondary" />
+              </div>
               <div>
-                <p className="text-sm text-muted-foreground">Time</p>
-                <p className="text-2xl font-bold text-primary">{formatTime(timeElapsed)}</p>
+                <p className="text-sm text-muted-foreground font-medium">Time</p>
+                <p className="text-3xl font-bold bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent">
+                  {formatTime(timeElapsed)}
+                </p>
               </div>
             </div>
           </Card>
 
           <Button 
             onClick={initializeGame}
-            variant="outline"
-            className="flex items-center gap-2"
+            className="glow-button flex items-center gap-3 px-8 py-6 text-lg font-semibold"
           >
-            <RotateCcw className="w-4 h-4" />
+            <RotateCcw className="w-5 h-5" />
             New Game
           </Button>
         </div>
 
         {/* Game Grid */}
-        <div className="game-grid max-w-lg mx-auto mb-8">
+        <div className="game-grid max-w-2xl mx-auto mb-12">
           {cards.map((card) => (
             <div
               key={card.id}
@@ -188,7 +195,10 @@ const MemoryGame = () => {
               onClick={() => handleCardClick(card.id)}
             >
               <div className="memory-card-inner">
-                <div className="memory-card-face memory-card-back" />
+                <div className="memory-card-face memory-card-back">
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/20 to-transparent rounded-[1.3rem]" />
+                  <span className="text-4xl">🎮</span>
+                </div>
                 <div 
                   className={`memory-card-face memory-card-front ${
                     card.isMatched ? 'matched' : ''
@@ -204,17 +214,20 @@ const MemoryGame = () => {
         {/* Win Message */}
         {gameWon && (
           <div className="text-center bounce-in">
-            <div className="bg-gradient-to-r from-green-400 to-blue-500 text-white p-6 rounded-2xl shadow-lg max-w-md mx-auto">
-              <h2 className="text-2xl font-bold mb-2">🎉 You Won!</h2>
-              <p className="mb-4">
-                Completed in {moves} moves and {formatTime(timeElapsed)}
+            <div className="win-message text-foreground p-8 rounded-3xl max-w-lg mx-auto">
+              <div className="text-6xl mb-4">🎉</div>
+              <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-success to-accent bg-clip-text text-transparent">
+                AMAZING!
+              </h2>
+              <p className="text-lg mb-6 text-foreground/80">
+                You completed the game in <span className="font-bold text-primary">{moves}</span> moves 
+                and <span className="font-bold text-secondary">{formatTime(timeElapsed)}</span>!
               </p>
               <Button 
                 onClick={initializeGame}
-                variant="secondary"
-                className="bg-white text-primary hover:bg-gray-100"
+                className="glow-button px-8 py-4 text-lg font-semibold"
               >
-                Play Again
+                🚀 Play Again
               </Button>
             </div>
           </div>

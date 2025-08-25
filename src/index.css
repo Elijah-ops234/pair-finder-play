@@ -168,8 +168,14 @@ All colors MUST be HSL.
   }
 
   .memory-card:hover {
-    transform: scale(1.05) md:scale(1.1) translateY(-2px) md:translateY(-5px);
+    transform: scale(1.05) translateY(-2px);
     filter: brightness(1.1);
+  }
+
+  @media (min-width: 768px) {
+    .memory-card:hover {
+      transform: scale(1.1) translateY(-5px);
+    }
   }
 
   .memory-card-inner {
@@ -185,16 +191,29 @@ All colors MUST be HSL.
   .memory-card-face {
     @apply absolute inset-0 w-full h-full flex items-center justify-center font-bold;
     backface-visibility: hidden;
-    border-radius: 1rem md:border-radius-1.5rem;
-    border: 2px md:border-3px solid transparent;
+    border-radius: 1rem;
+    border: 2px solid transparent;
+  }
+
+  @media (min-width: 768px) {
+    .memory-card-face {
+      border-radius: 1.5rem;
+      border: 3px solid transparent;
+    }
   }
 
   .memory-card-back {
     background: var(--gradient-card);
     box-shadow: var(--shadow-neon), var(--shadow-card);
-    border: 2px md:border-3px solid hsl(var(--primary-glow));
+    border: 2px solid hsl(var(--primary-glow));
     position: relative;
     overflow: hidden;
+  }
+
+  @media (min-width: 768px) {
+    .memory-card-back {
+      border: 3px solid hsl(var(--primary-glow));
+    }
   }
 
   .memory-card-back::before {
@@ -217,15 +236,27 @@ All colors MUST be HSL.
     background: var(--gradient-glass);
     backdrop-filter: blur(10px);
     transform: rotateY(180deg);
-    border: 2px md:border-3px solid hsl(var(--border));
+    border: 2px solid hsl(var(--border));
     box-shadow: var(--shadow-card);
+  }
+
+  @media (min-width: 768px) {
+    .memory-card-front {
+      border: 3px solid hsl(var(--border));
+    }
   }
 
   .memory-card.matched .memory-card-front {
     background: var(--gradient-success);
-    border: 2px md:border-3px solid hsl(var(--success));
+    border: 2px solid hsl(var(--success));
     box-shadow: var(--shadow-success-glow);
     animation: success-pulse 1.5s ease-in-out;
+  }
+
+  @media (min-width: 768px) {
+    .memory-card.matched .memory-card-front {
+      border: 3px solid hsl(var(--success));
+    }
   }
 
   @keyframes success-pulse {
@@ -244,13 +275,26 @@ All colors MUST be HSL.
 
   /* Enhanced game grid */
   .game-grid {
-    @apply grid gap-3 sm:gap-4 md:gap-6 place-items-center p-4 sm:p-6 md:p-8;
+    @apply grid gap-3 place-items-center p-4;
     grid-template-columns: repeat(4, 1fr);
     background: hsla(220 20% 15% / 0.3);
-    border-radius: 1.5rem md:border-radius-2rem;
+    border-radius: 1.5rem;
     border: 2px solid hsl(var(--border));
     backdrop-filter: blur(20px);
     box-shadow: var(--shadow-card);
+  }
+
+  @media (min-width: 640px) {
+    .game-grid {
+      @apply gap-4 p-6;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .game-grid {
+      @apply gap-6 p-8;
+      border-radius: 2rem;
+    }
   }
 
   /* Glass morphism stats cards */
@@ -258,12 +302,19 @@ All colors MUST be HSL.
     background: var(--gradient-glass);
     backdrop-filter: blur(20px);
     border: 2px solid hsl(var(--border));
-    border-radius: 1rem md:border-radius-1.5rem;
-    padding: 1rem md:padding-1.5rem;
+    border-radius: 1rem;
+    padding: 1rem;
     box-shadow: var(--shadow-card);
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
+  }
+
+  @media (min-width: 768px) {
+    .stats-card {
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+    }
   }
 
   .stats-card::before {

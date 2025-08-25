@@ -162,13 +162,13 @@ All colors MUST be HSL.
 
   /* Enhanced memory cards */
   .memory-card {
-    @apply relative w-20 h-20 md:w-28 md:h-28 cursor-pointer;
+    @apply relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 lg:w-28 lg:h-28 cursor-pointer;
     perspective: 1000px;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .memory-card:hover {
-    transform: scale(1.1) translateY(-5px);
+    transform: scale(1.05) md:scale(1.1) translateY(-2px) md:translateY(-5px);
     filter: brightness(1.1);
   }
 
@@ -183,16 +183,16 @@ All colors MUST be HSL.
   }
 
   .memory-card-face {
-    @apply absolute inset-0 w-full h-full flex items-center justify-center text-3xl md:text-4xl font-bold;
+    @apply absolute inset-0 w-full h-full flex items-center justify-center font-bold;
     backface-visibility: hidden;
-    border-radius: 1.5rem;
-    border: 3px solid transparent;
+    border-radius: 1rem md:border-radius-1.5rem;
+    border: 2px md:border-3px solid transparent;
   }
 
   .memory-card-back {
     background: var(--gradient-card);
     box-shadow: var(--shadow-neon), var(--shadow-card);
-    border: 3px solid hsl(var(--primary-glow));
+    border: 2px md:border-3px solid hsl(var(--primary-glow));
     position: relative;
     overflow: hidden;
   }
@@ -217,13 +217,13 @@ All colors MUST be HSL.
     background: var(--gradient-glass);
     backdrop-filter: blur(10px);
     transform: rotateY(180deg);
-    border: 3px solid hsl(var(--border));
+    border: 2px md:border-3px solid hsl(var(--border));
     box-shadow: var(--shadow-card);
   }
 
   .memory-card.matched .memory-card-front {
     background: var(--gradient-success);
-    border: 3px solid hsl(var(--success));
+    border: 2px md:border-3px solid hsl(var(--success));
     box-shadow: var(--shadow-success-glow);
     animation: success-pulse 1.5s ease-in-out;
   }
@@ -244,10 +244,10 @@ All colors MUST be HSL.
 
   /* Enhanced game grid */
   .game-grid {
-    @apply grid gap-6 place-items-center p-8;
+    @apply grid gap-3 sm:gap-4 md:gap-6 place-items-center p-4 sm:p-6 md:p-8;
     grid-template-columns: repeat(4, 1fr);
     background: hsla(220 20% 15% / 0.3);
-    border-radius: 2rem;
+    border-radius: 1.5rem md:border-radius-2rem;
     border: 2px solid hsl(var(--border));
     backdrop-filter: blur(20px);
     box-shadow: var(--shadow-card);
@@ -258,8 +258,8 @@ All colors MUST be HSL.
     background: var(--gradient-glass);
     backdrop-filter: blur(20px);
     border: 2px solid hsl(var(--border));
-    border-radius: 1.5rem;
-    padding: 1.5rem;
+    border-radius: 1rem md:border-radius-1.5rem;
+    padding: 1rem md:padding-1.5rem;
     box-shadow: var(--shadow-card);
     transition: all 0.3s ease;
     position: relative;
